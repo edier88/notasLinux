@@ -1360,4 +1360,10 @@ Una forma de crear un proceso directamente en Background es con "&"
 $ less prueba.txt &
 
 
+|-|_|-|_|-|_|-|_|-| DNS lookup with Dig |-|_|-|_|-|_|-|_|-|
+
+dig @<dns_address> <url>
+
+Ejemplo:
+$ dig @8.8.8.8.8 play.hbomax.com
 
