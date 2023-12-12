@@ -1073,6 +1073,11 @@ $ ls -l /etc/directory &>> filename.txt		--> appends the stderr and stdout in th
 '1>'		--> It's the same as '>'
 '1>>'		--> It's the same as '>>'
 
+An example in Crontab: (redirects STDOUT and STDERR to /var/log/daily-backup.log)
+
+ 0 15 * * *    /home/andrew/daily-backup.sh >> /var/log/daily-backup.log 2>&1
+
+
 
 |-|_|-|_|-|_|-|_|-| Show file/direcory statistics, settings, information and configuration |-|_|-|_|-|_|-|_|-|
 
