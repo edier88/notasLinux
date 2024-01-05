@@ -1,0 +1,15 @@
+$ docker run <container_name>
+
+$ docker -d run <container_name>
+
+$ docker exec -it <container_name> sh
+
+$ docker rm <container_ID>
+
+$ docker ps
+
+$ docker ps -a
+
+$ docker run -p <host_port>:<container_port> <container_name>
+
+
