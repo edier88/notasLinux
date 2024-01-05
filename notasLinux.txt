@@ -559,6 +559,11 @@ USER		---> Contains the name of user
 # usermod --lock <username>	---> In /etc/shadow one can see a "!" after the username. It means the user is blocked
 # usermod --unlock <username>
 
+- After adding a user to a new group, it needs to log in to the new group, that can be done this way:
+$ newgrp <group_name>			--> logs the user (that is using the terminal) in the new group
+
+$groups					--> Shows what groups the logged in user belongs to
+
 
 |-|_|-|_|-|_|-|_|-|  Change owner and permissions  |-|_|-|_|-|_|-|_|-|
 
