@@ -1377,3 +1377,17 @@ dig @<dns_address> <url>
 Ejemplo:
 $ dig @8.8.8.8.8 play.hbomax.com
 
+
+|-|_|-|_|-|_|-|_|-| Change Time Zone in Red Hat derivates |-|_|-|_|-|_|-|_|-|
+
+- To show time, date and timezone:
+$ date
+$ timedatectl
+
+- To change Timezone:
+To change the timezone, create the symbolic link /etc/localtime to the appropriate timezone under /usr/share/zoneinfo/:
+(/usr/share/zoneinfo contains all the information of all the time zones globally)
+
+$ sudo ln  -sf /usr/share/zoneinfo/America/Bogota /etc/localtime
+
+The flag -s enables creation of a symbolic link, otherwise a hard link is created by default and -f removes an existing destination file, which in this case is /etc/localtime
