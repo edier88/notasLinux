@@ -1386,7 +1386,7 @@ Ejemplo:
 $ dig @8.8.8.8.8 play.hbomax.com
 
 
-|-|_|-|_|-|_|-|_|-| Change Time Zone in Red Hat derivates |-|_|-|_|-|_|-|_|-|
+|-|_|-|_|-|_|-|_|-| Change Time Zone in Red Hat derivatives |-|_|-|_|-|_|-|_|-|
 
 - To show time, date and timezone:
 $ date
