@@ -1009,6 +1009,14 @@ For more information about the different options and flags of the command, surf 
 
 
 
+|-|_|-|_|-|_|-|_|-| JOURNALCTL |-|_|-|_|-|_|-|_|-|
+
+# journalctl -u <service-name>
+# journalctl -n <last_number_of_lines>
+
+# journalctl 1 | tail -10
+# journalctl 1 | head -5
+
 
 |-|_|-|_|-|_|-|_|-| FLATPAK |-|_|-|_|-|_|-|_|-|
 
