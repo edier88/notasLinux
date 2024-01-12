@@ -1399,3 +1399,10 @@ To change the timezone, create the symbolic link /etc/localtime to the appropria
 $ sudo ln  -sf /usr/share/zoneinfo/America/Bogota /etc/localtime
 
 The flag -s enables creation of a symbolic link, otherwise a hard link is created by default and -f removes an existing destination file, which in this case is /etc/localtime
+
+
+|-|_|-|_|-|_|-|_|-| reload network connection |-|_|-|_|-|_|-|_|-|
+
+# nmcli connection reload
+OR
+# systemctl restart NetworkManager
