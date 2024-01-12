@@ -1406,3 +1406,17 @@ The flag -s enables creation of a symbolic link, otherwise a hard link is create
 # nmcli connection reload
 OR
 # systemctl restart NetworkManager
+
+
+|-|_|-|_|-|_|-|_|-| Creation of tap interface/device |-|_|-|_|-|_|-|_|-|
+
+# ip tuntap add tap0 mode tap
+# ip link set dev tap0 up
+# ip addr add 192.168.1.1/24 dev tap0
+
+
+|-|_|-|_|-|_|-|_|-| Creation of dummy interface |-|_|-|_|-|_|-|_|-|
+
+# ip link add dummy1 type dummy
+# ip addr 1.1.1.1/24 dev dummy1
+# ip link set dummy1 up
