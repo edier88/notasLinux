@@ -1420,3 +1420,9 @@ OR
 # ip link add dummy1 type dummy
 # ip addr 1.1.1.1/24 dev dummy1
 # ip link set dummy1 up
+
+
+|-|_|-|_|-|_|-|_|-| Show linux distribution and kernel version |-|_|-|_|-|_|-|_|-|
+
+$ uname -r
+$ cat /etc/os-release
