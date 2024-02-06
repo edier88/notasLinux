@@ -1426,3 +1426,8 @@ OR
 
 $ uname -r
 $ cat /etc/os-release
+
+
+|-|_|-|_|-|_|-|_|-| SNMPWALK |-|_|-|_|-|_|-|_|-|
+
+$ snmpwalk -v3  -l authPriv -u snmp-zabbix -a SHA1 -A "97Emcali"  -x AES128 -X "97Emcali" 10.113.0.23 SNMPv2-MIB::sysName.0
