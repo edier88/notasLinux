@@ -1431,3 +1431,19 @@ $ cat /etc/os-release
 |-|_|-|_|-|_|-|_|-| SNMPWALK |-|_|-|_|-|_|-|_|-|
 
 $ snmpwalk -v3  -l authPriv -u snmp-zabbix -a SHA1 -A "97Emcali"  -x AES128 -X "97Emcali" 10.113.0.23 SNMPv2-MIB::sysName.0
+
+
+|-|_|-|_|-|_|-|_|-| decompress gzip |-|_|-|_|-|_|-|_|-|
+
+- To decompress .gz files, use:
+$ gzip -d filename.gz
+
+- One can unzip and open gz file using:
+$ gunzip archive.gz
+
+
+|-|_|-|_|-|_|-|_|-| Search string case insensitive VIM |-|_|-|_|-|_|-|_|-|
+
+/word\c
+
+
