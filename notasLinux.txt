@@ -294,6 +294,9 @@ x-scheme-handler/ftp=google-chrome.desktop;
 
 |-|_|-|_|-|_|-|_|-|  Compresión y decompresión en TAR GZ  |-|_|-|_|-|_|-|_|-|
 
+A tener en cuenta. TAR no comprime, junta los archivos en uno sólo, la labor de compresión la hace GZIP o BZIP2.
+GZIP sólo puede comprimir un archivo a la vez, es por eso que se utiliza TAR. Este último junta todos los archivos en uno solo llamado contenedor TAR y después se usa GZIP para comprimirlo.
+
 f --> specifies file name
 t --> lists all contained files in the tar file
 z --> use gzip compression/decompression
