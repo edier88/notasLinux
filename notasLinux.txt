@@ -77,7 +77,11 @@ $ head -n 2 texto.txt
 $ head -n -2 texto.txt
 --> prints all lines of the file omitting the last 2 lines
 
+$ ls -la | sed -n 3p
+--> Solamente muestra la tercera linea
 
+$ ls -la | sed -n 3,6p
+--> Muestra la tercera, cuarta, quinta y sexta linea
 
 
 
