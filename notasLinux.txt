@@ -1306,6 +1306,12 @@ AUTHENTICATING WITH RSA KEYS IN ADIFFERENT LOCATION THAN /.ssh (Specifying RSA K
 $ ssh -i /path/to/key <user>@<ip_address>
 
 
+|-|_|-|_|-|_|-|_|-| Create public-private key pair |-|_|-|_|-|_|-|_|-|
+
+$ ssh-keygen
+
+If the keys have to be stored in a different directory (other than ~/.ssh), the directory has to be specified when the utility asks.
+
 |-|_|-|_|-|_|-|_|-| Configure PPPoE connection |-|_|-|_|-|_|-|_|-|
 
 $ nmcli con edit type pppoe con-name "PPPoE"
