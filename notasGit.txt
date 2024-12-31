@@ -1,0 +1,11 @@
+
+-_-_-_-_-_ What changes did I already add to the Staging Area? -_-_-_-_-_-_-_
+
+By adding the --staged (or alternatively: --cached) option, Git will show which local changes you have already added to Staging Area, via "git add":
+
+- Staged changes in a certain file...
+$ git diff --staged index.html
+
+- Staged changes in all local files...
+$ git diff --staged
+
