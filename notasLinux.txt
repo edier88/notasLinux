@@ -830,20 +830,13 @@ rsync -r bar/ me@server:/home/me/
 
 
 
-|-|_|-|_|-|_|-|_|-| Connect to other host via SSH |-|_|-|_|-|_|-|_|-|
-
-
-$ ssh <remote_host>
-$ ssh <remote_username>@<remote_host>
-
-
 |-|_|-|_|-|_|-|_|-| NMAP - Ports and network scanning |-|_|-|_|-|_|-|_|-|
 
 $ nmap -p 636 10.29.114.230	--> It looks for the port "636" (ldap) in the remote IP 10.29.114.230
 
 $ nmap -sn 192.168.1.0/24	--> Scans all the hosts up in the ip address segment
 
-
+$ nmap -nsP 192.168.10.0/24	--> Ping to all ip addresses in 192.168.10.0/24 network segment (from 192.168.10.1 to 192.168.10.254)
 
 
 |-|_|-|_|-|_|-| NETSTAT - View listening connections in our server (ip address:port) |-|_|-|_|-|_|-|
@@ -1305,11 +1298,12 @@ $ rsync -Wav -e 'ssh' root@147.182.178.11:/music/song.mp3 /home/edier88/Music/
 
 |-|_|-|_|-|_|-|_|-| Connect via SSH to a server |-|_|-|_|-|_|-|_|-|
 
+$ ssh <ip_address>
 $ ssh <user>@<ip_address>
 CONNECTING WITH A DIFFERENT PORT
-$ ssh -p 7022 <user>@<ip_address>
-AUTHENTICATING WITH RSA KEYS IN ADIFFERENT LOCATION THAN /.ssh
-$ ssh -i /path/to/key.pub <user>@<ip_address>
+$ ssh <user>@<ip_address> -p 7022
+AUTHENTICATING WITH RSA KEYS IN ADIFFERENT LOCATION THAN /.ssh (Specifying RSA Key location)
+$ ssh -i /path/to/key <user>@<ip_address>
 
 
 |-|_|-|_|-|_|-|_|-| Configure PPPoE connection |-|_|-|_|-|_|-|_|-|

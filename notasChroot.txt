@@ -1,0 +1,159 @@
+
+- HOW TO CHROOT
+(taken from https://fedoramagazine.org/os-chroot-101-covering-btrfs-subvolumes/)
+
+
+
+When you use chroot to run a mounted Gnu/Linux OS, in order for it to be fully functional, you have to mount the special system folders in their “original places in the directory tree” in the chrootDir. This allows the chrooted OS to talk to the kernel.
+
+These special system folders are:
+
+    /dev for the devices;
+    /proc which contains the information about the system (kernel and process);
+    /sys which contains the information about the hardware.
+
+For example, /dev has to be mounted in chrootDir/dev.
+
+
+_-_-_-_-_-_-_-_- Filesystems without btrfs subvolumes (Classic method) _-_-_-_-_-_-_-_-
+
+In the following example, the partition we are going to mount is the OSext root (/). This is located in /dev/vda2 and we will mount it in the chrootDir (/mnt) directory. /mnt is not a necessity, you can also mount the partition somewhere else.
+
+--------------------------------------------------------------------------------------------
+# mount /dev/vda2 /mnt
+# mount --bind /dev /mnt/dev 
+# mount -t proc /proc /mnt/proc
+# mount -t sysfs /sys /mnt/sys
+# mount -t tmpfs tmpfs /mnt/run
+# mkdir -p /mnt/run/systemd/resolve/
+# echo 'nameserver 1.1.1.1' > /mnt/run/systemd/resolve/stub-resolv.conf
+# chroot /mnt
+--------------------------------------------------------------------------------------------
+
+The –bind option makes the contents accessible in both locations, -t defines the filesystem type. See the manpage for more information.
+
+We will mount /run as tmpfs (in the memory) because we are using systemd-resolved (this is the default now in Fedora). Then we will create the folder and the file stub-resolv.conf, which is associated by a symbolic link to /etc/resolv.conf. This file contains the resolver IP. In this example, the resolver is 1.1.1.1, but you can use any resolver IP you like.
+
+To exit the chroot, the shell command is exit. After that, we unmount all the folders we just mounted:
+
+--------------------------------------------------------------------------------------------
+# exit
+# umount /mnt/dev
+# umount /mnt/proc
+# umount /mnt/sys
+# umount /mnt/run
+# umount /mnt
+--------------------------------------------------------------------------------------------
+
+
+
+_-_-_-_-_-_-_-_- Chroot with LVM partitions _-_-_-_-_-_-_-_-
+
+In the case of lvm, the partitions are not available directly and must be mapped first.
+
+--------------------------------
+# fdisk -l /dev/vda2
+Disk /dev/vda2: 19 GiB, 20400046080 bytes, 39843840 sectors
+[...]
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+# mount /dev/vda2 /mnt/
+mount: /mnt: unknown filesystem type 'LVM2_member'.
+--------------------------------
+
+As you can see, we are not able to mount /dev/vda2 directly. We will now use the lvm tools to locate our partitions.
+
+--------------------------------
+# pvscan
+PV /dev/vda2   VG cl              lvm2 [<19.00 GiB / 0    free]
+Total: 1 [<19.00 GiB] / in use: 1 [<19.00 GiB] / in no VG: 0 [0]
+
+# vgscan
+Found volume group "cl" using metadata type lvm2
+
+# lvscan
+ACTIVE            '/dev/cl/root' [10.00 GiB] inherit
+ACTIVE            '/dev/cl/swap' [2.00 GiB] inherit
+ACTIVE            '/dev/cl/home' [1.00 GiB] inherit
+ACTIVE            '/dev/cl/var' [<6.00 GiB] inherit
+--------------------------------
+
+So here we can see where the logical volumes are mapped /dev/cl and we can mount these partitions like we did before, using the same method:
+
+--------------------------------
+# mount /dev/cl/root /mnt/
+# mount /dev/cl/home /mnt/home/
+# mount /dev/cl/var /mnt/var/
+# mount --bind /dev /mnt/dev
+# mount -t proc /proc /mnt/proc
+# mount -t sysfs /sys /mnt/sys
+# mount -t tmpfs tmpfs /mnt/run
+# mkdir -p /mnt/run/systemd/resolve/
+# echo 'nameserver 1.1.1.1' > /mnt/run/systemd/resolve/stub-resolv.conf
+# chroot /mnt
+--------------------------------
+
+
+_-_-_-_-_-_-_-_- BTRFS Filesystem with subvolumes _-_-_-_-_-_-_-_-
+
+First we must know if the filesystem is a BTRFS one, it can be done issuing:
+
+-------------------------
+# blkid
+# cat /etc/fstab
+-------------------------
+
+Then we need to know what subvolumes belong to the BTRFS partition:
+
+-------------------------
+# mount /dev/vda2 /mnt/
+# btrfs subvolume list /mnt
+ID 256 gen 178 top level 5 path home
+ID 258 gen 200 top level 5 path root
+ID 262 gen 160 top level 258 path root/var/lib/machines
+# umount /mnt
+-------------------------
+
+We can see that it has 2 subvolumes, home and root
+
+To mount everything and to chroot:
+
+-------------------------
+# mount /dev/vda2 /mnt/ -t btrfs -o subvol=root
+
+# ls /mnt/
+bin dev home lib64 media opt root sbin sys usr
+boot etc lib lost+found mnt proc run srv tmp var
+
+# ls /mnt/home/
+<it's still empty>
+
+# mount /dev/vda2 /mnt/home -t btrfs -o subvol=home
+
+# ls /mnt/home/
+user
+
+# mount /dev/vda1 /mnt/boot
+# mount --bind /dev /mnt/dev
+# mount -t proc /proc /mnt/proc
+# mount -t sysfs /sys /mnt/sys
+# mount -t tmpfs tmpfs /mnt/run
+# mkdir -p /mnt/run/systemd/resolve/
+# echo 'nameserver 1.1.1.1' > /mnt/run/systemd/resolve/stub-resolv.conf
+# chroot /mnt
+-------------------------
+
+When the job is done, we use the shell command exit and unmount all previously mounted directories as well as the chrootDir itself (/mnt).
+
+-------------------------
+# exit
+# umount /mnt/boot
+# umount /mnt/sys
+# umount /mnt/proc
+# umount /mnt/sys
+# umount /mnt/run
+# umount /mnt
+-------------------------
+
+
+
