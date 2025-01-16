@@ -1459,3 +1459,13 @@ $ gunzip archive.gz
 /word\c
 
 
+|-|_|-|_|-|_|-|_|-| See Selinux warning messages |-|_|-|_|-|_|-|_|-|
+
+# tail -f /var/log/audit/audit.log
+
+
+|-|_|-|_|-|_|-|_|-| List SELinux contexts |-|_|-|_|-|_|-|_|-|
+
+semanage fcontext -l | less
+
+
