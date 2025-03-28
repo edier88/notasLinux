@@ -9,3 +9,19 @@ $ git diff --staged index.html
 - Staged changes in all local files...
 $ git diff --staged
 
+
+-_-_-_-_-_ Navigate to older branch -_-_-_-_-_-_-_
+
+$ git log --oneline
+
+$ git checkout <commit-id> .
+
+The previous command WITHOUT the dot "."
+	it will take you to a new “detached head state” 
+	where you can make changes and it will allow you to make commits, 
+	but nothing will be saved and any commits you make will be lost.
+
+
+The previous command WITH the dot "."
+	you can make changes and commits and everything will be saved in a new branch
+
