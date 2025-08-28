@@ -1468,4 +1468,14 @@ $ gunzip archive.gz
 
 semanage fcontext -l | less
 
+|-|_|-|_|-|_|-|_|-| Modify permissions/policies in SELINUX |-|_|-|_|-|_|-|_|-|
 
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/sect-security-enhanced_linux-working_with_selinux-selinux_contexts_labeling_files#sect-Security-Enhanced_Linux-Working_with_SELinux-SELinux_Contexts_Labeling_Files
+
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow#sect-Security-Enhanced_Linux-Fixing_Problems-Allowing_Access_audit2allow
+
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-selinux_contexts_labeling_files-persistent_changes_semanage_fcontext#sect-Security-Enhanced_Linux-SELinux_Contexts_Labeling_Files-Persistent_Changes_semanage_fcontext
+
+
+
+Recordar documentar chat con deepseek, está muy bien explicado

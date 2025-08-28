@@ -25,3 +25,19 @@ The previous command WITHOUT the dot "."
 The previous command WITH the dot "."
 	you can make changes and commits and everything will be saved in a new branch
 
+
+-_-_-_-_-_ Undo last commit (unpushed commit) -_-_-_-_-_-_-_
+
+$ git reset --soft HEAD~
+
+All added files will remain added after undoing last unpushed commit
+
+
+-_-_-_-_-_ Reset added files in Staging Area (Unstage files) -_-_-_-_-_-_-_
+
+$ git restore --staged <file>
+
+Restore all files:
+
+$ git restore --staged .
+
