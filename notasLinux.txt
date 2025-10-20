@@ -1479,3 +1479,51 @@ https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/securit
 
 
 Recordar documentar chat con deepseek, está muy bien explicado
+
+
+|-|_|-|_|-|_|-|_|-| Crontab |-|_|-|_|-|_|-|_|-|
+
+Para ver el crontab general del sistema:
+
+# vim /etc/crontab
+
+Pero cada usuario tiene su Crontab, incluso root. Para ver el Crontab de cada usuario se usa:
+
+# crontab -l
+
+Para editar el crontab del usuario logueado:
+
+# crontab -e
+
+El crontab de cada usuario se guarda en un directorio diferente al Crontab general, cada usuario tiene su crontab en:
+
+# cd /var/spool/cron/<usuario>
+
+
+Ejemplo de crontabs:
+
+
+
+    Crontabs de usuario: (nótese que no se debe poner el username antes del comando)
+
+     # Example of job definition:
+     # .---------------- minute (0 - 59)
+     # |  .------------- hour (0 - 23)
+     # |  |  .---------- day of month (1 - 31)
+     # |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+     # |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7)
+     # |  |  |  |  |
+     # *  *  *  *  *   command to be executed
+
+    Crontabs del sistema en /etc/crontab: (nótese que se debe poner el username antes del comando)
+
+     # Example of job definition:
+     # .---------------- minute (0 - 59)
+     # |  .------------- hour (0 - 23)
+     # |  |  .---------- day of month (1 - 31)
+     # |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+     # |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7)
+     # |  |  |  |  |
+     # *  *  *  *  * user-name  command to be executed
+
+
