@@ -1527,3 +1527,15 @@ Ejemplo de crontabs:
      # *  *  *  *  * user-name  command to be executed
 
 
+
+|-|_|-|_|-|_|-|_|-| List all Unix Sockets in OS |-|_|-|_|-|_|-|_|-|
+
+# netstat -a -p --unix
+
+- List mysql sockets if they exist
+
+# netstat -a -p --unix | grep -i mysql
+
+
+
+
