@@ -29,6 +29,7 @@ The previous command WITH the dot "."
 -_-_-_-_-_ Undo last commit (unpushed commit) -_-_-_-_-_-_-_
 
 $ git reset --soft HEAD~
+$ git reset --soft HEAD~1
 
 All added files will remain added after undoing last unpushed commit
 
