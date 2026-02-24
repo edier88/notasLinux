@@ -1541,3 +1541,22 @@ Ejemplo de crontabs:
 |-|_|-|_|-|_|-|_|-| For partitioning disks hard drives |-|_|-|_|-|_|-|_|-|
 
 # fdisk /dev/sdX
+
+
+
+
+|-|_|-|_|-|_|-|_|-| Excluding packages to prevent its installation or update |-|_|-|_|-|_|-|_|-|
+
+This is done primarily to prevent a package, that has already been installed, to be updated.
+The reason of this is beacause its current version needs to be kept.
+
+If this is done before installing the package, it won't never be installed.
+
+"/etc/dnf/dnf.conf" has to be editted. After [main], the line to exclude packages has to be added. Example:
+
+[main]
+excludepkgs=postgresql*,postgresql-server*,postgresql-contrib*
+
+In the example, postgresql will never be installed or updated.
+
+
