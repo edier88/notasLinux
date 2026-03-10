@@ -1560,3 +1560,20 @@ excludepkgs=postgresql*,postgresql-server*,postgresql-contrib*
 In the example, postgresql will never be installed or updated.
 
 
+
+|-|_|-|_|-|_|-|_|-| PING BURST |-|_|-|_|-|_|-|_|-|
+
+sudo ping -f -c 100 192.168.1.1
+
+
+
+|-|_|-|_|-|_|-|_|-| View/show service error via journalctl |-|_|-|_|-|_|-|_|-|
+
+# journalctl -xeu <service_name>
+
+Ejemplo:
+
+# journalctl -xeu zabbix-server.service
+
+
+
