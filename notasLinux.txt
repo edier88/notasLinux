@@ -1577,3 +1577,49 @@ Ejemplo:
 
 
 
+|-|_|-|_|-|_|-|_|-| Sending packets through NETCAT without Binding |-|_|-|_|-|_|-|_|-|
+
+Step 1 : Open two terminals. In the first terminal, start Netcat in UDP listen mode on port 8899: (if TCP is going to be used, the -u flag has to be removed)
+
+# nc -ul -p 8899
+
+Step 2 : In the second terminal, use Netcat to send a UDP packet to 127.0.0.1 port 8899. The -u option tells Netcat to use UDP instead of the default TCP. The -w1 option closes the connection after 1 second to send just a single packet:
+
+# echo "Hello World" | nc -u -w1 127.0.0.1 8899
+
+Step 3 : In the first terminal, you should see the packet received: "Hello World"
+
+- The key points are:
+
+    Use the -u option to use UDP instead of TCP
+    Omit the -p option to avoid binding to a port
+    Use -w1 to close after sending just one packet
+
+This allows you to easily send a single UDP packet without having to bind to a port. The source port will be randomly assigned.
+
+
+
+|-|_|-|_|-|_|-|_|-| Sending packets through NETCAT and TCP (binding) |-|_|-|_|-|_|-|_|-|
+
+With Netcat your PC can be converted in a server, you want to begin as a server that listens at port 2399:
+
+$ nc -l 2399
+
+In addition, we can use the server to connect to the port (2399) recently opened, from the client side:
+
+$ nc localhost 2399
+
+Once the connection is established you are now able to write to the server from the client: 
+
+$ nc localhost 2399
+
+Hello Server
+
+In the terminal where the server is running, your text files will appear seamlessly.
+
+$ nc -l 2399
+
+Hello Server
+
+
+
