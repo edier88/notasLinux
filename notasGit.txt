@@ -42,3 +42,8 @@ Restore all files:
 
 $ git restore --staged .
 
+
+
+-_-_-_-_-_ Erase all changes made to a file (the change should not be committed or the file added) -_-_-_-_-_-_-_
+
+$ git restore <file>
